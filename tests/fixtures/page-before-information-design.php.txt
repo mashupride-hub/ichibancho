@@ -1,0 +1,136 @@
+<?php
+/** Template Name: 買取専門店一番町店 */
+defined('ABSPATH') || exit;
+require_once get_theme_file_path('/lp_ichibancho_assets/inc/luxury-page.php');
+\MandaiLuxury\enqueue();
+$ch_assets = get_theme_file_uri('/lp_ichibancho_assets/');
+$ch_settings = \MandaiLuxury\settings();
+$ch_links = \MandaiLuxury\links();
+$ch_line = \MandaiLuxury\safe_url($ch_links['line']);
+$ch_purchase = \MandaiLuxury\safe_url($ch_links['purchase']);
+$ch_shop = \MandaiLuxury\safe_url($ch_links['shop']);
+$ch_faq_url = \MandaiLuxury\safe_url($ch_links['faq']);
+$ch_products = \MandaiLuxury\products();
+$ch_categories = $ch_settings['categories'];
+get_header();
+?>
+<script>document.body.setAttribute('data-loader', 'load');</script>
+<main id="main_contents" class="ch-page" data-fixed-cta="<?php echo !empty($ch_settings['fixed_cta']) ? 'on' : 'off'; ?>" data-cta-exclude="<?php echo esc_attr(wp_json_encode($ch_settings['fixed_cta_exclude_selectors'])); ?>">
+    <section class="ch-hero" aria-labelledby="ch-title">
+        <img class="ch-hero-image" src="<?php echo esc_url($ch_assets . 'images/chrome-hearts/hero.png'); ?>" alt="黒いレザーに重なるシルバーのクロスペンダントとリングのイメージ" width="1536" height="1024" fetchpriority="high" loading="eager">
+        <div class="ch-container ch-hero-inner">
+            <h1 id="ch-title">CHROME<br>HEARTS</h1>
+            <p class="ch-hero-lead">クロムハーツの買取・販売</p>
+            <p class="ch-hero-copy">クロムハーツをはじめ、ルイ・ヴィトン、エルメス、<br>ロレックス、シャネルなど高級ブランドを幅広くお取り扱い。<br>大切な一品の買取も、次の一品との出会いも、万代へ。</p>
+            <div class="ch-actions"><?php \MandaiLuxury\button('LINE査定', $ch_line, 'ch-button-gold'); \MandaiLuxury\button('買取申込', $ch_purchase ?: '#ch-request', 'ch-button-outline', true); \MandaiLuxury\button('販売商品を見る', '#ch-pickup', 'ch-button-outline', true); ?></div>
+        </div>
+    </section>
+
+<nav class="ch-page-nav ch-container" aria-label="ページ内メニュー"><a href="#ch-chrome">クロムハーツの買取</a><a href="#ch-category">取扱ブランド・カテゴリー</a><a href="#ch-pickup">最新入荷商品</a><a href="#ch-flow">買取の流れ</a><a href="#ch-faq">よくあるご質問</a><a href="#ch-store">店舗・アクセス</a></nav>
+    <div class="ch-container ch-paths">
+        <section class="ch-path ch-path-sell" id="ch-sell" aria-labelledby="ch-sell-title"><h2 id="ch-sell-title">買取をお考えの方</h2><p>一点から無料で査定。<br>査定のみ・キャンセルも費用はかかりません。</p><div class="ch-actions"><?php \MandaiLuxury\button('LINE査定', $ch_line, 'ch-button-gold'); \MandaiLuxury\button('買取申込', $ch_purchase ?: '#ch-request', 'ch-button-white', true); ?></div><a class="ch-text-link ch-light-link" href="#ch-flow">買取の流れを確認する <span aria-hidden="true">→</span></a></section>
+        <section class="ch-path ch-path-buy" aria-labelledby="ch-buy-title" style="--ch-path-image: url('<?php echo esc_url($ch_assets . 'images/chrome-hearts/hero.png'); ?>')"><h2 id="ch-buy-title">販売商品をお探しの方</h2><p>クロムハーツやブランドアイテムの<br>最新入荷・販売在庫をご案内します。</p><?php \MandaiLuxury\button('販売商品を見る', '#ch-pickup', 'ch-button-white', true); ?></section>
+    </div>
+
+    <section class="ch-feature ch-chrome-purchase" id="ch-chrome" aria-labelledby="ch-feature-title"><div class="ch-container">
+        <div class="ch-chrome-heading"><h2 id="ch-feature-title">クロムハーツのお買取</h2><span aria-hidden="true"></span></div>
+        <p class="ch-chrome-intro">シルバーアクセサリーから財布・レザー、アパレルまで幅広くお取り扱い。<br>専門バイヤーが一点ずつ丁寧に査定いたします。LINE査定・店頭買取・宅配買取からお選びいただけます。</p>
+        <div class="ch-chrome-items">
+        <?php foreach (array('ring' => array('リング', '0% 0%'), 'necklace' => array('ネックレス', '50% 0%'), 'bracelet' => array('ブレスレット', '100% 0%'), 'leather' => array('財布・レザー', '0% 100%'), 'apparel' => array('アパレル', '50% 100%')) as $ch_key => $ch_item) : $ch_result_url = \MandaiLuxury\result_link($ch_key); ?>
+            <article class="ch-chrome-item"><div class="ch-chrome-item-visual" role="img" aria-label="<?php echo esc_attr($ch_item[0] . 'のイメージ'); ?>" style="background-position:<?php echo esc_attr($ch_item[1]); ?>;"></div><div class="ch-chrome-item-caption"><h3><?php echo esc_html($ch_item[0]); ?></h3><span>買取対象</span><?php if ($ch_result_url) : ?><a class="ch-text-link ch-light-link" href="<?php echo esc_url($ch_result_url); ?>">買取実績を見る <span aria-hidden="true">→</span></a><?php endif; ?></div></article>
+        <?php endforeach; ?>
+        </div>
+        <p class="ch-chrome-image-note">写真は買取対象を紹介するイメージです。</p>
+        <div class="ch-chrome-benefits">
+            <article><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 13l7 8 7-13 7 13 7-8-4 18H10zM10 35h20"/></svg><h3>専門バイヤーによる<br>丁寧な査定</h3></article>
+            <article><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 13l7-7h16l7 7-15 23zM5 13h30M12 6l8 30L28 6M12 6l8 7 8-7"/></svg><h3>一点から<br>無料査定</h3></article>
+            <article><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5l13 6v11c0 8-13 15-13 15S7 30 7 22V11zM13 21l5 5 9-11"/></svg><h3>安心・丁寧な<br>対応</h3></article>
+            <article><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 10h21v20H4zM25 17h7l5 7v6H25M25 24h12"/><circle cx="11" cy="31" r="4"/><circle cx="31" cy="31" r="4"/></svg><h3>店頭・宅配<br>選べる買取方法</h3></article>
+        </div>
+        <div class="ch-purchase-methods" data-purchase-methods>
+            <fieldset class="ch-method-choices"><legend>買取方法をお選びください</legend><div class="ch-method-options"><label><input type="radio" name="chrome-purchase-method" value="line" checked aria-controls="ch-method-line"><span>LINE査定</span></label><label><input type="radio" name="chrome-purchase-method" value="store" aria-controls="ch-method-store"><span>店頭買取</span></label><label><input type="radio" name="chrome-purchase-method" value="delivery" aria-controls="ch-method-delivery"><span>宅配買取</span></label></div></fieldset>
+            <div class="ch-method-panels">
+                <div class="ch-method-panel" id="ch-method-line"><div><h3>写真を送って、まずは気軽にご相談。</h3><p>お品物の写真・ブランド名・付属品の有無をLINEでお知らせください。<br>実際の買取金額は、お品物を拝見したうえでご案内します。</p></div><?php \MandaiLuxury\button('LINEで査定する', $ch_line, 'ch-button-gold'); ?></div>
+                <div class="ch-method-panel" id="ch-method-store"><div><h3>店舗へお持ち込み、その場で査定。</h3><p>お品物と本人確認書類をお持ちください。<br>一点から、査定だけのご相談も承ります。</p></div><div class="ch-actions"><?php \MandaiLuxury\button('店舗・アクセスを見る', '#ch-store', 'ch-button-gold', true); ?><a class="ch-text-link ch-light-link" href="#ch-flow">店頭買取の流れを見る <span aria-hidden="true">→</span></a></div></div>
+                <div class="ch-method-panel" id="ch-method-delivery"><div><h3>ご来店が難しい方は、宅配買取へ。</h3><p>発送前に受付方法・送付先・必要書類をご確認ください。<br>お品物や付属品の内容をお知らせいただき、手順をご案内します。</p></div><?php $ch_delivery_url = \MandaiLuxury\safe_url($ch_links['delivery']); \MandaiLuxury\button($ch_delivery_url ? '宅配買取の申込・詳細' : 'LINEで宅配買取を相談する', $ch_delivery_url ?: $ch_line, 'ch-button-gold'); ?></div>
+            </div>
+        </div>
+        <div class="ch-chrome-apply"><?php \MandaiLuxury\button('買取申込はこちら', $ch_purchase ?: '#ch-request', 'ch-button-outline', true); ?><a class="ch-text-link ch-light-link" href="tel:0227247219">電話で相談：022-724-7219</a></div>
+    </div></section>
+
+    <section class="ch-section ch-container ch-explore" id="ch-category" aria-labelledby="ch-category-title">
+        <div class="ch-section-heading"><div><h2 id="ch-category-title">取扱ブランド・カテゴリー</h2><p class="ch-section-intro">クロムハーツをはじめ、高級ブランド全般の買取・販売をご相談いただけます。</p></div></div>
+        <div class="ch-explore-grid">
+        <?php foreach ($ch_categories as $ch_category) : ?>
+            <article class="ch-explore-card ch-category-card" tabindex="0" aria-label="<?php echo esc_attr($ch_category['name'] . 'の取扱商材'); ?>">
+                <div class="ch-explore-image"><img src="<?php echo esc_url($ch_assets . 'images/' . $ch_category['image']); ?>" alt="<?php echo esc_attr($ch_category['name']); ?>" width="500" height="380" loading="lazy"></div>
+                <details class="ch-category-brands"><summary class="ch-explore-info"><span><?php echo esc_html($ch_category['name']); ?></span><span class="ch-map-sr">取扱ブランド・商材を表示</span></summary><div class="ch-category-brand-panel"><ul><?php foreach ($ch_category['brands'] as $ch_brand_name) : ?><li><?php echo esc_html($ch_brand_name); ?></li><?php endforeach; ?></ul><p><?php echo $ch_category['brands'] ? '掲載以外のお品物もお気軽にご相談ください。' : 'お取り扱いについては店舗へお気軽にお問い合わせください。'; ?></p></div></details>
+            </article>
+        <?php endforeach; ?>
+        </div>
+    </section>
+
+    <section class="ch-section ch-container" id="ch-pickup" aria-labelledby="ch-pickup-title"><div class="ch-section-heading"><div><h2 id="ch-pickup-title">NEW ARRIVALS</h2><p class="ch-section-intro">最新入荷商品</p></div><?php \MandaiLuxury\button('商品一覧を見る', $ch_shop); ?></div>
+    <?php if ($ch_products) : ?><div class="ch-products">
+    <?php foreach ($ch_products as $ch_product) : $ch_product_brand = \MandaiLuxury\product_brand($ch_product); ?>
+        <a class="ch-product" href="<?php echo esc_url($ch_product->get_permalink()); ?>"><div class="ch-product-image"><?php if ($ch_product->get_image_id()) : echo wp_kses_post($ch_product->get_image('woocommerce_thumbnail', array('loading' => 'lazy'))); else : ?><span class="ch-photo-fallback">商品画像<small>写真は準備中です</small></span><?php endif; ?></div><div class="ch-product-info"><?php if ($ch_product_brand) : ?><p class="ch-product-brand"><?php echo esc_html($ch_product_brand); ?></p><?php endif; ?><h3><?php echo esc_html($ch_product->get_name()); ?></h3><div class="ch-price"><?php echo $ch_product->get_price() !== '' ? wp_kses_post($ch_product->get_price_html()) : '販売価格はお問い合わせください'; ?></div></div></a>
+    <?php endforeach; ?></div>
+    <?php else : ?><div class="ch-products ch-products-empty" aria-label="入荷情報のご案内"><?php for ($ch_slot = 0; $ch_slot < 4; $ch_slot++) : ?><div class="ch-product ch-product-placeholder"><div class="ch-product-image"><span>入荷情報を準備中</span></div><p>販売在庫はお問い合わせください</p></div><?php endfor; ?></div><div class="ch-stock-note"><div><h3>お探しの一品を、ご相談ください。</h3><p>商品情報が未掲載の場合も、入荷状況はLINEまたは店舗へお問い合わせください。</p></div><?php \MandaiLuxury\button('LINEで在庫を問い合わせる', $ch_line); ?></div><?php endif; ?>
+    </section>
+
+    <section class="ch-section ch-container ch-results" id="ch-results" aria-labelledby="ch-results-title"><div class="ch-section-heading"><div><h2 id="ch-results-title">買取実績</h2></div><span class="ch-subtitle">一番町店でお買取したお品物をご紹介</span></div><div class="ch-results-grid">
+    <?php \MandaiLuxury\result_cards($ch_settings['results']); ?>
+    </div>
+    <?php foreach (array('ring' => 'リング', 'necklace' => 'ネックレス', 'bracelet' => 'ブレスレット', 'apparel' => 'アパレル', 'leather' => '財布・レザー') as $ch_key => $ch_label) : $ch_group = array_filter($ch_settings['results'], function($item) use ($ch_key) { return !empty($item['chrome_hearts']) && $item['category'] === $ch_key; }); if (!$ch_group) { continue; } ?>
+        <details class="ch-result-group" id="ch-results-<?php echo esc_attr($ch_key); ?>"><summary><?php echo esc_html($ch_label); ?>のクロムハーツ買取実績</summary><div class="ch-results-grid"><?php \MandaiLuxury\result_cards($ch_group); ?></div></details>
+    <?php endforeach; ?>
+    </section>
+
+    <section class="ch-strength" aria-labelledby="ch-strength-title"><div class="ch-container"><div class="ch-section-heading"><div><h2 id="ch-strength-title">万代の買取サービス</h2></div></div><div class="ch-strength-grid">
+        <article><h3>一点ずつ、<br>丁寧に査定</h3><p>お品物の状態や付属品を確認し、<br>査定内容をご案内します。</p></article>
+        <article><h3>ブランドの価値を<br>見極める</h3><p>シルバーからバッグ、時計まで。<br>幅広いブランドをお取り扱い。</p></article>
+        <article><h3>査定・相談は<br>無料</h3><p>まずはお見積もりだけでも。<br>お気軽にご相談ください。</p></article>
+        <article><h3>店頭でも、<br>LINEでも</h3><p>ご都合に合わせて選べる、<br>身近な買取の窓口です。</p></article>
+    </div></div></section>
+
+    <section class="ch-flow" id="ch-flow" aria-labelledby="ch-flow-title"><div class="ch-container"><div class="ch-section-heading"><div><h2 id="ch-flow-title">買取の流れ</h2></div><span class="ch-subtitle">店頭での査定・お手続き</span></div><ol class="ch-flow-grid"><li><span>01</span><h3>ご来店・ご相談</h3><p>お品物と本人確認書類をお持ちください。事前のご相談はLINEでも承ります。</p></li><li><span>02</span><h3>無料査定</h3><p>お品物を一点ずつ確認し、査定金額をご提示します。付属品もあわせてお持ちください。</p></li><li><span>03</span><h3>ご成約・お支払い</h3><p>金額にご納得いただけましたら、お手続きのうえ買取代金をお支払いします。</p></li></ol><p class="ch-note">※ お取引に必要な本人確認書類・条件は、ご来店前に店舗へご確認ください。</p></div></section>
+
+
+    <section class="ch-section ch-container ch-request" id="ch-request" aria-labelledby="ch-request-title"><div class="ch-section-heading"><div><h2 id="ch-request-title">買取申込・ご相談</h2><p class="ch-section-intro">お品物の写真・ブランド名・付属品の有無をお知らせください。</p></div></div><p>店頭へのお持ち込み、LINE・お電話でのご相談を受け付けています。店舗での査定をご希望の方は、お品物と本人確認書類をお持ちください。</p><div class="ch-actions"><?php \MandaiLuxury\button('LINEで買取を相談する', $ch_line, 'ch-button-gold'); if ($ch_purchase) { \MandaiLuxury\button('買取申込へ進む', $ch_purchase); } ?><a class="ch-button ch-button-dark" href="tel:0227247219">電話で買取を相談する<span aria-hidden="true">→</span></a></div></section>
+
+    <section class="ch-section ch-container ch-faq" id="ch-faq" aria-labelledby="ch-faq-title"><div class="ch-section-heading"><div><h2 id="ch-faq-title">よくあるご質問</h2></div></div>
+        <div class="ch-faq-list"><?php $ch_featured = array_slice(array_values(array_filter($ch_settings['faqs'], function($item) { return !empty($item['featured']); })), 0, 5); \MandaiLuxury\faqs($ch_featured); ?></div>
+        <?php if ($ch_faq_url) : ?><div class="ch-faq-actions"><?php \MandaiLuxury\button('よくあるご質問をもっと見る', $ch_faq_url); ?></div><?php endif; ?>
+    </section>
+
+    <section class="ch-store" id="ch-store" aria-labelledby="ch-store-title">
+        <div class="ch-container ch-store-heading"><h2 id="ch-store-title">店舗案内</h2><p>買取のご相談も、販売商品のお問い合わせも。お気軽にお立ち寄りください。</p></div>
+        <div class="ch-container ch-store-hero">
+            <div class="ch-store-information"><h3>万代 一番町店</h3><dl class="ch-store-facts"><div><dt>営業時間</dt><dd>10:00〜19:00</dd></div><div><dt>定休日</dt><dd>年中無休<span>（年末年始を除く）</span></dd></div><div><dt>所在地</dt><dd><address>〒980-0811<br>宮城県仙台市青葉区一番町4丁目5-16</address></dd></div></dl><div class="ch-store-call"><p>買取・販売のお問い合わせ</p><a class="ch-store-phone" href="tel:0227247219">022-724-7219</a></div><div class="ch-actions"><?php \MandaiLuxury\button('LINEで相談する', $ch_line, 'ch-button-gold'); ?><a class="ch-button ch-button-dark" href="#ch-map">地図・アクセス<span aria-hidden="true">↓</span></a></div><a class="ch-text-link ch-store-detail-link" href="<?php echo esc_url(home_url('/access/#ichibanmachi')); ?>">店舗の詳細を見る <span aria-hidden="true">→</span></a></div>
+            <figure class="ch-store-hero-photo"><?php foreach ($ch_settings['photos'] as $ch_photo) : if ($ch_photo['id'] !== 'exterior') { continue; } \MandaiLuxury\photo($ch_photo['image'], $ch_photo['label']); ?><figcaption><?php echo esc_html($ch_photo['caption']); ?></figcaption><?php endforeach; ?></figure>
+        </div>
+        <div class="ch-container ch-store-block ch-store-social-block"><div class="ch-store-block-heading"><h3>公式SNS・LINE</h3><p>入荷情報や店舗のお知らせをチェック。ご相談はLINEでも。</p></div>
+        <div class="ch-socials" aria-label="一番町店の公式SNS">
+            <?php foreach ($ch_settings['socials'] as $ch_social) : $ch_social_url = \MandaiLuxury\safe_url($ch_social['id'] === 'line' ? $ch_line : $ch_social['url']); ?>
+            <div class="ch-social-card"><img src="<?php echo esc_url($ch_assets . 'images/' . $ch_social['image']); ?>" alt="<?php echo esc_attr($ch_social['name'] . 'のQRコード'); ?>" width="200" height="200" loading="lazy"><div class="ch-social-content"><h4><?php echo esc_html($ch_social['name']); ?></h4><?php if ($ch_social_url) : ?><a href="<?php echo esc_url($ch_social_url); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($ch_social['label']); ?><span class="ch-map-sr">（新しいタブ）</span></a><?php else : ?><span class="ch-social-disabled">準備中</span><?php endif; ?></div></div>
+            <?php endforeach; ?>
+        </div>
+        </div>
+        <?php foreach (array('inside' => '店内の様子', 'route' => '入口・店舗までの道順') as $ch_group => $ch_group_title) : ?>
+        <div class="ch-container ch-store-block"><div class="ch-store-block-heading"><h3><?php echo esc_html($ch_group_title); ?></h3></div><div class="ch-store-gallery" aria-label="<?php echo esc_attr($ch_group_title); ?>"><?php foreach ($ch_settings['photos'] as $ch_photo) : $ch_inside = in_array($ch_photo['id'], array('interior', 'showcase', 'counter'), true); if ($ch_photo['id'] === 'exterior' || ($ch_group === 'inside') !== $ch_inside) { continue; } ?><figure class="ch-store-photo"><?php \MandaiLuxury\photo($ch_photo['image'], $ch_photo['label']); ?><figcaption><?php echo esc_html($ch_photo['label']); ?><small><?php echo esc_html($ch_photo['caption']); ?></small></figcaption></figure><?php endforeach; ?></div></div>
+        <?php endforeach; ?>
+        <div class="ch-store-map" id="ch-map">
+            <div class="ch-store-map-heading"><h3>アクセスマップ</h3><a class="ch-text-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%AE%AE%E5%9F%8E%E7%9C%8C%E4%BB%99%E5%8F%B0%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E4%B8%80%E7%95%AA%E7%94%BA4%E4%B8%81%E7%9B%AE5-16" target="_blank" rel="noopener noreferrer">Googleマップで開く <span aria-hidden="true">↗</span><span class="ch-map-sr">（新しいタブ）</span></a></div>
+            <iframe title="万代 一番町店のアクセスマップ" src="https://maps.google.com/maps?q=%E5%AE%AE%E5%9F%8E%E7%9C%8C%E4%BB%99%E5%8F%B0%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E4%B8%80%E7%95%AA%E7%94%BA4%E4%B8%81%E7%9B%AE5-16&amp;hl=ja&amp;z=17&amp;output=embed" width="1200" height="400" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+    </section>
+
+
+    <?php $ch_news = new WP_Query(array('post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => true, 'no_found_rows' => true)); ?>
+    <?php if ($ch_news->have_posts()) : ?><section class="ch-news ch-container" aria-labelledby="ch-news-title"><div><h2 id="ch-news-title">お知らせ</h2></div><div class="ch-news-list"><?php while ($ch_news->have_posts()) : $ch_news->the_post(); ?><a href="<?php the_permalink(); ?>"><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date('Y.m.d')); ?></time><span><?php echo esc_html(get_the_title()); ?></span><b aria-hidden="true">→</b></a><?php endwhile; ?></div></section><?php endif; wp_reset_postdata(); ?>
+
+
+    <section class="ch-contact" aria-labelledby="ch-contact-title"><div class="ch-container"><h2 id="ch-contact-title">まずはお気軽にご相談ください</h2><p>売りたい方はLINE査定・買取申込へ。<br class="ch-mobile-break">お探しの方は販売商品をご覧ください。</p><div class="ch-actions"><?php \MandaiLuxury\button('LINE査定', $ch_line, 'ch-button-gold'); \MandaiLuxury\button('買取申込', $ch_purchase ?: '#ch-request', 'ch-button-outline', true); \MandaiLuxury\button('販売商品を見る', '#ch-pickup', 'ch-button-outline', true); ?></div><a class="ch-contact-phone" href="tel:0227247219">電話で相談：022-724-7219</a></div></section>
+    <nav class="ch-fixed-cta" aria-label="買取・販売のご案内"><?php \MandaiLuxury\button('LINE査定', $ch_line, 'ch-button-gold'); \MandaiLuxury\button('買取申込', $ch_purchase ?: '#ch-request', 'ch-button-dark', true); \MandaiLuxury\button('販売商品を見る', '#ch-pickup', 'ch-button-dark', true); ?></nav>
+</main>
+<?php get_footer(); ?>

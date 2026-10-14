@@ -1,0 +1,128 @@
+<?php
+/** Template Name: 買取専門店一番町店 */
+defined('ABSPATH') || exit;
+$ch_assets = get_theme_file_uri('/lp_ichibancho_assets/');
+$ch_css = get_theme_file_path('/lp_ichibancho_assets/css/chrome-hearts.css');
+wp_enqueue_style('mandai-chrome-hearts', $ch_assets . 'css/chrome-hearts.css', array(), file_exists($ch_css) ? (string) filemtime($ch_css) : null);
+$ch_line = apply_filters('mandai_chrome_hearts_line_url', 'https://page.line.me/003rhvgq');
+// 販売ページがある場合はテーマのフィルターでURLを指定。
+$ch_shop = apply_filters('mandai_chrome_hearts_shop_url', '#ch-store');
+$ch_categories = array(
+    array('CHROME HEARTS', 'クロムハーツ', 'chrome-hearts/hero.png', '#ch-chrome'),
+    array('BAGS', 'ブランドバッグ', 'uploads/2020/07/cat-brand-bag.png', home_url('/bag/')),
+    array('WATCHES', 'ブランド時計', 'uploads/2020/07/cat-brand-watch.png', home_url('/clock/')),
+    array('JEWELRY', 'ジュエリー', 'uploads/2020/07/cat-brand-jewelry.png', home_url('/jewelry/')),
+    array('ACCESSORIES', 'アクセサリー', 'uploads/2020/07/cat-brand-acc.png', home_url('/accessories/')),
+    array('APPAREL', 'アパレル・その他', 'uploads/2020/07/cat-brand-appales.png', home_url('/clothing/')),
+);
+$ch_results = array(
+    array('SILVER ACCESSORIES', 'Starlingear', 'フレーミングスケルトンキーペンダント', 'uploads/2021/06/161-b00161-19_2.jpg'),
+    array('HERMÈS', 'エルメス', 'ガーデンパーティPM', 'uploads/2021/05/20211211_170307.jpg'),
+    array('HUBLOT', 'ウブロ', 'クラシック・フュージョン チタニウム', 'uploads/2021/04/20210807_124319-scaled.jpg'),
+    array('HAMILTON', 'ハミルトン', 'ジャズマスター', 'uploads/2021/04/20211211_172514.jpg'),
+);
+get_header();
+?>
+<script>document.body.setAttribute('data-loader', 'load');</script>
+<main id="main_contents" class="ch-page">
+    <section class="ch-hero" aria-labelledby="ch-title">
+        <img class="ch-hero-image" src="<?php echo esc_url($ch_assets . 'images/chrome-hearts/hero.png'); ?>" alt="黒いレザーに重なるシルバーのクロスペンダントとリングのイメージ" width="1536" height="1024" fetchpriority="high" loading="eager">
+        <div class="ch-container ch-hero-inner">
+            
+            <h1 id="ch-title">CHROME<br>HEARTS</h1>
+            <p class="ch-hero-lead">クロムハーツの買取・販売</p>
+            <p class="ch-hero-copy">クロムハーツの買取・販売なら万代へ。<br>シルバーアクセサリーからレザー、アパレルまで。<br>大切な一品の価値を、丁寧に見極めます。</p>
+            <div class="ch-actions"><a class="ch-button ch-button-gold" href="<?php echo esc_url($ch_line); ?>"><span class="ch-line-icon" aria-hidden="true">LINE</span>LINEで査定する<span aria-hidden="true">↗</span></a><a class="ch-button ch-button-outline" href="#ch-pickup">販売・在庫を見る<span aria-hidden="true">→</span></a></div>
+        </div>
+    </section>
+
+    <nav class="ch-page-nav ch-container" aria-label="ページ内メニュー"><a href="#ch-chrome">クロムハーツの買取</a><a href="#ch-pickup">販売・在庫</a><a href="#ch-flow">買取の流れ</a><a href="#ch-faq">よくあるご質問</a><a href="#ch-store">店舗・アクセス</a></nav>
+
+    <div class="ch-container ch-paths">
+        <section class="ch-path ch-path-sell" id="ch-sell" aria-labelledby="ch-sell-title"><h2 id="ch-sell-title">買取をお考えの方</h2><p>大切なお品物を、<br>次のオーナーへつなぐお手伝いを。</p><a class="ch-button ch-button-white" href="#ch-flow">買取方法を詳しく見る<span aria-hidden="true">→</span></a></section>
+        <section class="ch-path ch-path-buy" aria-labelledby="ch-buy-title" style="--ch-path-image: url('<?php echo esc_url($ch_assets . 'images/chrome-hearts/hero.png'); ?>')"><h2 id="ch-buy-title">販売商品をお探しの方</h2><p>クロムハーツやブランドアイテムの<br>販売・在庫をご案内します。</p><a class="ch-button ch-button-white" href="#ch-pickup">販売・在庫について<span aria-hidden="true">→</span></a></section>
+    </div>
+
+    <section class="ch-feature" id="ch-chrome" aria-labelledby="ch-feature-title"><div class="ch-container ch-feature-inner">
+        <div class="ch-feature-visual"><img src="<?php echo esc_url($ch_assets . 'images/chrome-hearts/hero.png'); ?>" alt="シルバーアクセサリーのディテールのイメージ" loading="lazy" width="1536" height="1024"></div>
+        <div class="ch-feature-copy"><h2 id="ch-feature-title">クロムハーツのお買取</h2><p>大切なクロムハーツを、一点から無料で査定します。</p><p>リング・ネックレス・ブレスレットをはじめ、財布やレザーアイテム、アパレルもご相談ください。付属品の有無やお品物の状態を確認し、一点ずつ査定いたします。</p><div class="ch-tags"><span>リング</span><span>ネックレス</span><span>ブレスレット</span><span>レザー</span><span>アパレル</span></div><a class="ch-text-link ch-light-link" href="<?php echo esc_url($ch_line); ?>">クロムハーツの査定を相談する <span aria-hidden="true">→</span></a></div>
+    </div></section>
+
+    <section class="ch-section ch-container" id="ch-category" aria-labelledby="ch-category-title">
+        <div class="ch-section-heading"><div><h2 id="ch-category-title">取扱カテゴリー</h2></div><a class="ch-text-link" href="<?php echo esc_url(home_url('/accessories/')); ?>">アクセサリーの買取について <span aria-hidden="true">→</span></a></div>
+        <div class="ch-categories">
+        <?php foreach ($ch_categories as $ch_index => $ch_category) : ?>
+            <a class="ch-category <?php echo $ch_index === 0 ? 'ch-category-chrome' : ''; ?>" href="<?php echo esc_url($ch_category[3]); ?>"><div class="ch-category-image"><img src="<?php echo esc_url($ch_assets . 'images/' . $ch_category[2]); ?>" alt="<?php echo esc_attr($ch_category[1]); ?>" loading="lazy" width="500" height="380"></div><span><?php echo esc_html($ch_category[1]); ?></span></a>
+        <?php endforeach; ?>
+        </div>
+    </section>
+
+    <section class="ch-section ch-container" id="ch-pickup" aria-labelledby="ch-pickup-title"><div class="ch-section-heading"><div><h2 id="ch-pickup-title">販売商品・在庫のご案内</h2></div><a class="ch-text-link" href="<?php echo esc_url($ch_shop); ?>">販売・在庫のご案内 <span aria-hidden="true">→</span></a></div>
+    <?php
+    // 実在する公開・在庫あり商品だけを表示。未導入時はお問い合わせをご案内。
+    $ch_products = function_exists('wc_get_products') ? wc_get_products(array('status' => 'publish', 'limit' => 6, 'stock_status' => 'instock', 'orderby' => 'date', 'order' => 'DESC', 'visibility' => 'visible')) : array();
+    if ($ch_products) : ?>
+        <div class="ch-products"><?php foreach ($ch_products as $ch_product) : ?><a class="ch-product" href="<?php echo esc_url($ch_product->get_permalink()); ?>"><div class="ch-product-image"><?php echo wp_kses_post($ch_product->get_image('woocommerce_thumbnail', array('loading' => 'lazy'))); ?></div><div class="ch-product-info"><small>販売中</small><h3><?php echo esc_html($ch_product->get_name()); ?></h3><p class="ch-price"><?php echo wp_kses_post($ch_product->get_price_html()); ?></p></div></a><?php endforeach; ?></div>
+    <?php else : ?>
+        <div class="ch-stock-note"><div><h3>お探しの一品を、ご相談ください。</h3><p>クロムハーツやブランドアイテムの入荷状況・販売在庫は、LINEまたは店舗へお問い合わせください。</p></div><a class="ch-button ch-button-dark" href="<?php echo esc_url($ch_line); ?>">LINEで在庫を問い合わせる<span aria-hidden="true">↗</span></a></div>
+    <?php endif; ?></section>
+
+    <section class="ch-section ch-container ch-results" aria-labelledby="ch-results-title"><div class="ch-section-heading"><div><h2 id="ch-results-title">買取実績</h2></div><span class="ch-subtitle">一番町店でお買取したお品物をご紹介</span></div><div class="ch-results-grid">
+    <?php foreach ($ch_results as $ch_result) : ?><article class="ch-result"><div class="ch-result-image"><img src="<?php echo esc_url($ch_assets . 'images/' . $ch_result[3]); ?>" alt="<?php echo esc_attr($ch_result[1] . ' ' . $ch_result[2]); ?>" width="600" height="600" loading="lazy"><span>買取実績</span></div><div class="ch-product-info"><h3><?php echo esc_html($ch_result[1]); ?></h3><p><?php echo esc_html($ch_result[2]); ?></p></div></article><?php endforeach; ?>
+    </div></section>
+
+    <section class="ch-strength" aria-labelledby="ch-strength-title"><div class="ch-container"><div class="ch-section-heading"><div><h2 id="ch-strength-title">万代の買取サービス</h2></div></div><div class="ch-strength-grid">
+        <article><h3>一点ずつ、<br>丁寧に査定</h3><p>お品物の状態や付属品を確認し、<br>査定内容をご案内します。</p></article>
+        <article><h3>ブランドの価値を<br>見極める</h3><p>シルバーからバッグ、時計まで。<br>幅広いブランドをお取り扱い。</p></article>
+        <article><h3>査定・相談は<br>無料</h3><p>まずはお見積もりだけでも。<br>お気軽にご相談ください。</p></article>
+        <article><h3>店頭でも、<br>LINEでも</h3><p>ご都合に合わせて選べる、<br>身近な買取の窓口です。</p></article>
+    </div></div></section>
+
+    <section class="ch-flow" id="ch-flow" aria-labelledby="ch-flow-title"><div class="ch-container"><div class="ch-section-heading"><div><h2 id="ch-flow-title">買取の流れ</h2></div><span class="ch-subtitle">店頭での査定・お手続き</span></div><ol class="ch-flow-grid"><li><span>01</span><h3>ご来店・ご相談</h3><p>お品物と本人確認書類をお持ちください。事前のご相談はLINEでも承ります。</p></li><li><span>02</span><h3>無料査定</h3><p>お品物を一点ずつ確認し、査定金額をご提示します。付属品もあわせてお持ちください。</p></li><li><span>03</span><h3>ご成約・お支払い</h3><p>金額にご納得いただけましたら、お手続きのうえ買取代金をお支払いします。</p></li></ol><p class="ch-note">※ お取引に必要な本人確認書類・条件は、ご来店前に店舗へご確認ください。</p></div></section>
+
+    <section class="ch-section ch-container ch-faq" id="ch-faq" aria-labelledby="ch-faq-title">
+        <div class="ch-section-heading"><div><h2 id="ch-faq-title">よくあるご質問</h2></div></div>
+        <div class="ch-faq-list">
+            <details><summary>1点でも査定・買取はできますか？</summary><div class="ch-faq-answer"><p>1点から受け付けております。お気軽にお持ちくださいませ。</p></div></details>
+            <details><summary>査定だけでも出来ますか？</summary><div class="ch-faq-answer"><p>査定だけでも承っております。費用等は一切かかりませんのでご安心ください。</p></div></details>
+            <details><summary>査定後のキャンセルは可能ですか？</summary><div class="ch-faq-answer"><p>査定後のキャンセルは可能です。費用等は一切かかりませんのでご安心ください。</p></div></details>
+            <details><summary>査定・買取にお金はかかりますか？</summary><div class="ch-faq-answer"><p>手数料等の費用は一切かかりませんのでご安心ください。</p></div></details>
+            <details><summary>本物か偽物かを鑑定してもらえますか？</summary><div class="ch-faq-answer"><p>お品物の本物か偽物かの鑑定は行っておりませんのでご了承ください。査定はあくまで当店でお取り扱いできるかどうかの判断となります。</p></div></details>
+            <details><summary>付属品（保証書・鑑定書・鑑別書・箱他）が無くても買取できますか？</summary><div class="ch-faq-answer"><p>付属品が無い状態でも買取できます。もしお持ちであれば、買取金額が変わる場合もございますのでご一緒にお持ちください。</p></div></details>
+            <details><summary>古い品物でも買取できますか？</summary><div class="ch-faq-answer"><p>古い物でも買取しておりますのでお気軽にお持ちください。</p></div></details>
+            <details><summary>カスタムした品物でも買取できますか？</summary><div class="ch-faq-answer"><p>買取は可能ですが純正品と異なるため、査定額は純正品に比べて減額となります。</p><p>※ 実際に拝見し、当店の買取基準を満たしていない場合にはお断りする場合もございますので、ご了承ください。</p></div></details>
+            <details><summary>なぜ買取り時に本人確認証が必要なのですか？</summary><div class="ch-faq-answer"><p>古物営業法により、お買取りの際に本人確認証の確認が必要となっております。</p></div></details>
+            <details><summary>未成年ですが、買取りしてもらえますか？</summary><div class="ch-faq-answer"><p>当店のご利用は、20歳以上の方となっております。</p></div></details>
+            <details><summary>以前利用したことがありますが、また本人確認証が必要ですか？</summary><div class="ch-faq-answer"><p>古物営業法により、毎回必要となります。</p></div></details>
+            <details><summary>金・銀・プラチナ製品とは、どんなものがありますか？</summary><div class="ch-faq-answer"><p>指輪やネックレス、ブレスレット、ピアス等のアクセサリー類はもちろんのこと、金歯、銀歯、眼鏡のフレーム、金貨、銀貨、プラチナ貨、金杯、銀杯、小判、インゴット（塊）、工業用地金等、様々なものがあります。</p></div></details>
+            <details><summary>金かどうか分からないものでも大丈夫でしょうか？</summary><div class="ch-faq-answer"><p>直接店舗へお持ち込みいただければ、その場でお調べいたします。思いがけず大きなお査定額になる可能性もございますので、是非お気軽にお持ち込み下さい。もちろん査定・鑑定料金は一切いただきませんのでご安心下さい。</p></div></details>
+            <details><summary>石が取れていたり、内側に文字が入っていたりする指輪なのですが、買い取っていただけますか？</summary><div class="ch-faq-answer"><p>金・銀・プラチナ製品でしたら状態を問わず、どのようなお品物でもお買取可能です。</p></div></details>
+            <details><summary>ホームページに載ってないブランドやノーブランドの時計も買取できますか？</summary><div class="ch-faq-answer"><p>ブランド・ノーブランド問わずに買取を行っております。ホームページ記載のブランドは一例ですのでお気軽にお問合せくださいませ。</p></div></details>
+        </div>
+    </section>
+
+    <section class="ch-store" id="ch-store" aria-labelledby="ch-store-title"><div class="ch-store-copy"><h2 id="ch-store-title">店舗案内</h2><h3>万代 一番町店</h3><p>お近くで、気軽に相談できる場所へ。<br>買取・販売のお問い合わせをお待ちしています。</p><address>宮城県仙台市青葉区一番町4丁目5-16</address><a class="ch-store-phone" href="tel:0227247219">022-724-7219</a><a class="ch-button ch-button-dark" href="<?php echo esc_url(home_url('/access/#ichibanmachi')); ?>">店舗の詳細・アクセス<span aria-hidden="true">→</span></a></div>
+        <div class="ch-store-gallery ch-container" aria-label="店舗写真">
+            <figure class="ch-store-photo">
+                <div class="ch-store-photo-frame"><img src="<?php echo esc_url($ch_assets . 'images/store-information3.jpg'); ?>" alt="万代 一番町店の外観" width="1280" height="1280" loading="lazy"></div>
+                <figcaption>店外<small>お店の外観</small></figcaption>
+            </figure>
+            <!-- 写真を追加する際は ch-store-photo-placeholder を ch-store-photo-frame に変更し、中のspanをimgに置き換えてください。 -->
+            <figure class="ch-store-photo"><div class="ch-store-photo-placeholder"><span>店内写真</span></div><figcaption>店内<small>売り場全体の雰囲気</small></figcaption></figure>
+            <figure class="ch-store-photo"><div class="ch-store-photo-placeholder"><span>ショーケース写真</span></div><figcaption>ショーケース<small>取り扱い商品の展示</small></figcaption></figure>
+            <figure class="ch-store-photo"><div class="ch-store-photo-placeholder"><span>受付カウンター写真</span></div><figcaption>受付カウンター<small>買取の受付・ご相談スペース</small></figcaption></figure>
+            <figure class="ch-store-photo"><div class="ch-store-photo-placeholder"><span>入口・看板写真</span></div><figcaption>入口・看板<small>ご来店時の目印</small></figcaption></figure>
+            <figure class="ch-store-photo"><div class="ch-store-photo-placeholder"><span>周辺・道順写真</span></div><figcaption>周辺からの道順<small>アーケードから店舗まで</small></figcaption></figure>
+        </div>
+        <div class="ch-store-map">
+            <div class="ch-store-map-heading"><h3>アクセスマップ</h3><a class="ch-text-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%AE%AE%E5%9F%8E%E7%9C%8C%E4%BB%99%E5%8F%B0%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E4%B8%80%E7%95%AA%E7%94%BA4%E4%B8%81%E7%9B%AE5-16" target="_blank" rel="noopener noreferrer">Googleマップで開く <span aria-hidden="true">↗</span><span class="ch-map-sr">（新しいタブ）</span></a></div>
+            <iframe title="万代 一番町店のアクセスマップ" src="https://maps.google.com/maps?q=%E5%AE%AE%E5%9F%8E%E7%9C%8C%E4%BB%99%E5%8F%B0%E5%B8%82%E9%9D%92%E8%91%89%E5%8C%BA%E4%B8%80%E7%95%AA%E7%94%BA4%E4%B8%81%E7%9B%AE5-16&amp;hl=ja&amp;z=17&amp;output=embed" width="1200" height="400" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <?php $ch_news = new WP_Query(array('post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => 3, 'ignore_sticky_posts' => true, 'no_found_rows' => true)); ?>
+    <?php if ($ch_news->have_posts()) : ?><section class="ch-news ch-container" aria-labelledby="ch-news-title"><div><h2 id="ch-news-title">お知らせ</h2></div><div class="ch-news-list"><?php while ($ch_news->have_posts()) : $ch_news->the_post(); ?><a href="<?php the_permalink(); ?>"><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date('Y.m.d')); ?></time><span><?php echo esc_html(get_the_title()); ?></span><b aria-hidden="true">→</b></a><?php endwhile; ?></div></section><?php endif; wp_reset_postdata(); ?>
+
+    <section class="ch-contact" aria-labelledby="ch-contact-title"><div class="ch-container"><h2 id="ch-contact-title">まずはお気軽にご相談ください</h2><p>査定だけでも、在庫のお問い合わせでも。<br class="ch-mobile-break">あなたの一品に、丁寧に向き合います。</p><div class="ch-actions"><a class="ch-button ch-button-line" href="<?php echo esc_url($ch_line); ?>"><span class="ch-line-icon" aria-hidden="true">LINE</span>LINEで査定する<span aria-hidden="true">↗</span></a><a class="ch-button ch-button-red" href="tel:0227247219">電話で買取を相談する<span aria-hidden="true">→</span></a><a class="ch-button ch-button-outline" href="#ch-flow">無料査定の流れを見る<span aria-hidden="true">→</span></a></div></div></section>
+</main>
+<?php get_footer(); ?>
